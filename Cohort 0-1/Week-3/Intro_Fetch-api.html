@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Api</title>
+</head>
+
+<body>
+    <button id="btn">Get Animal Data</button>
+    <div id="datap"></div>
+
+    <script>
+        const btn = document.getElementById('btn');
+        const datapDiv = document.getElementById('datap');
+
+        btn.addEventListener('click', async function() {
+            alert("hi There")
+            // We can also use fetch API from " Axios "
+            // to make a GET request to the specified URL and then parse the response as JSON.
+            const response = await axios.get('https://fakerapi.it/api/v1/persons')
+            // const response = await fetch('https://fakerapi.it/api/v1/persons')
+            const finaldata = await response.json()
+            // Print the data to the div
+            datapDiv.innerHTML = '';
+            finaldata.data.forEach(person => {
+                const paragraph = document.createElement('p');
+                paragraph.textContent = `Name: ${person.firstname} ${person.lastname}, Email: ${person.email}`;
+                datapDiv.appendChild(paragraph);                           
+            });
+        });
+    </script>
+</body>
+
+</html>

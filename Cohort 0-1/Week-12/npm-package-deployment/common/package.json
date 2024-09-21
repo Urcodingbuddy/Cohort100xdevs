@@ -1,0 +1,20 @@
+{
+  "name": "@anshpethe/common",
+  "version": "1.0.3",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "rimraf *.tgz"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@anshpethe/common": "^1.0.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  }
+}

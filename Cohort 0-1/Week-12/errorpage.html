@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>404 - Page Not Found</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #0d0d0d, #1a1a1a);
+            color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .error-container {
+            text-align: center;
+            color: #f5f5f5;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 8em;
+            letter-spacing: 10px;
+            position: relative;
+            color: #ff4757;
+            animation: glitch 1.5s infinite;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .error-description {
+            margin-top: 20px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1e90ff;
+            padding: 10px 20px;
+            border: 2px solid #1e90ff;
+            margin-top: 20px;
+            display: inline-block;
+            border-radius: 25px;
+            font-size: 1.2em;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            background: #1e90ff;
+            color: #1a1a1a;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0px, 0px); }
+            20% { transform: translate(2px, -2px); }
+            40% { transform: translate(-2px, 2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(-2px, -2px); }
+            100% { transform: translate(0px, 0px); }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Stars effect */
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #fff;
+            border-radius: 50%;
+            animation: moveStars 5s linear infinite;
+            box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes moveStars {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-120vh); }
+        }
+
+        /* Create multiple stars */
+        .star:nth-child(odd) { animation-duration: 4s; }
+        .star:nth-child(even) { animation-duration: 6s; }
+    </style>
+</head>
+
+<body>
+
+    <div class="error-container">
+        <h1>404</h1>
+        <h2>Oops! Page Not Found</h2>
+        <p class="error-description">The page you're looking for doesn't exist.</p>
+        <a href="/">Return to Homepage</a>
+    </div>
+
+    <!-- Starry background animation -->
+    <script>
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.animationDuration = `${Math.random() * 4 + 2}s`; // between 2 and 6 seconds
+            document.body.appendChild(star);
+            
+            setTimeout(() => star.remove(), 6000); // Remove star after animation
+        }
+
+        setInterval(createStar, 150); // Create a new star every 150ms
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+body{
+    background-color: rgb(48, 47, 47);
+    color: white;
+    box-sizing: border-box;
+}
+.inner{
+    padding: 20px;
+    /* background-color: #f9f9f9; */
+    border-radius: 5px;
+}
+
+button{
+    margin: 5px;
+}
+
+button:hover{
+    background-color: skyblue;
+}
+button::-webkit-scrollbar-track-piece{
+    color: blueviolet;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #171717;
+        }
+
+       .container {
+            display: flex;
+            width: 80vw;
+            padding: 20px;
+            background-color: #302f2db8;
+            border-radius: 5px;
+            box-shadow: -1px 1px 50px 5px rgba(238, 255, 0, 0.712);
+            margin-bottom: 20px;
+            gap: 8%;
+            /* flex-wrap: wrap; */
+            text-wrap: wrap;
+        }
+
+       .sec1 {
+            max-width: 50%;
+            max-height: 95%;
+        }
+
+       .sectionLine {
+            border: 1px solid rgba(12, 156, 9, 0.733);
+            box-shadow: 0px 0px 7px 2px rgba(238, 255, 0, 0.712);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="sec1">
+            <label for="title">ToDo List</label><br>
+            <input id="title" type="text" placeholder="title"><br><br>
+            <input id="description" type="text" placeholder="description"><br><br>
+            <button onclick="addtodo()">Add todo</button><br><br>
+        </div>
+        <div class="sectionLine"></div>
+
+
+        <div class="sec2">
+            <div id="todos"></div>
+        </div>
+    </div>
+    <script>
+        let globalId = 1;
+        let state = [{
+            title: "Buy groceries",
+            description: "Milk, eggs, bread, and vegetables",
+            id: 1
+        }];
+
+        function markAsDone(todoId) {
+            const parent = document.getElementById(todoId);
+            const button = parent.querySelector('button');
+            button.textContent = "Done!";
+        }
+
+        function createChild(title, description, id) {
+            const child = document.createElement("div");
+            child.innerHTML = `
+    <div>${title}</div>
+    <div>${description}</div>
+    <button onclick="markAsDone(${id})">Mark as done</button>
+  `;
+            child.setAttribute("id", id);
+            return child;
+        }
+
+        function updateDomAccToState() {
+            const parent = document.getElementById("todos");
+            parent.innerHTML = "";
+            for (let i = 0; i < state.length; i++) {
+                const child = createChild(state[i].title, state[i].description, state[i].id);
+                parent.appendChild(child);
+            }
+        }
+
+        updateDomAccToState();
+
+        function addtodo() {
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            state.push({
+                title: title,
+                description: description,
+                id: globalId++
+            });
+            updateDomAccToState();
+        }
+    </script>
+</body>
+
+</html>

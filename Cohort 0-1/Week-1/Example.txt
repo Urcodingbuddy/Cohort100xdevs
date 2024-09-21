@@ -1,0 +1,5 @@
+i am an example txt for ... testfunc.js
+
+/*
+    plese paste me in code learning(or in parent ) folder directly for execution
+*/

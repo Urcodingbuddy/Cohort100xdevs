@@ -1,0 +1,39 @@
+const request = require('supertest');
+const assert = require('assert');
+const express = require('express');
+
+const app = express();
+let errorCount = 0;
+
+function errorHandle(err, req, res, next) {
+  errorCount++;
+  console.error(err.stack);
+  res.status(404).send('Something broke!');
+  next(err); // Pass the error to the next middleware in the stack
+}
+
+// You have been given an express server which has a few endpoints.
+// Your task is to
+// 1. Ensure that if there is ever an exception, the end user sees a status code of 404
+// 2. Maintain the errorCount variable whose value should go up every time there is an exception in any endpoint
+
+app.get('/user', function(req, res) {
+  throw new Error("User not found");
+  res.status(200).json({ name: 'john' });
+});
+
+app.post('/user', function(req, res) {
+  res.status(200).json({ msg: 'created dummy user' });
+});
+
+app.get('/errorCount', function(req, res) {
+  res.status(200).json({ errorCount });
+});
+
+app.use(errorHandle)
+
+app.listen(3000, "0.0.0.0", ()=>{
+  console.log("server is activated on Port : 3000  :)")
+})
+
+module.exports = app;

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            height: 90vh;
+            background-color: #b4aaaa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        .calcbox {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px 10px rgba(151, 151, 151, 0.614);
+        }
+
+        .calcbox label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calcbox input[type="number"] {
+            width: 90%;
+            height: 30px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .calcbox button[type="submit"] {
+            width: 100%;
+            height: 30px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calcbox button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        .calcbox .result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="calcbox">
+            <h2>Simple Interest Calculator</h2>
+            <form>
+                <label for="principal">Principal Amount:</label>
+                <input type="number" id="principal" name="principal">
+
+                <label for="rate">Interest Rate (%):</label>
+                <input type="number" id="rate" name="rate">
+
+                <label for="time">Time (years):</label>
+                <input type="number" id="time" name="time">
+
+                <button id="submit-btn" type="submit">Calculate</button>
+
+                <div class="result"></div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const submitBtn = document.getElementById('submit-btn');
+
+        submitBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            let amount = document.getElementById('principal').value;
+            let rate = document.getElementById('rate').value;
+            let time = document.getElementById('time').value;
+
+            if (amount === '' || rate === '' || time === '') {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            const interest = (amount * rate * time) / 100;
+            document.querySelector('.result').innerHTML = `Simple Interest: ${interest}`;
+        })
+    </script>
+</body>
+
+</html>
