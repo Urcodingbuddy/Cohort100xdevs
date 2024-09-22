@@ -1,12 +1,9 @@
 
 import { PrismaClient } from "@prisma/client";
 import express from "express";
-
 const app = express();
 app.use(express.json());
-
 const client = new PrismaClient();
-
 app.get("/", (req, res) => {
     res.json({
         message: "Healthy server"
