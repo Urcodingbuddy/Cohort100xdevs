@@ -1,4 +1,4 @@
-# Cohort-3 - 100xDevs by Harkirat Singh
+# Cohort-2 - 100xDevs by Harkirat Singh
 
 Welcome to the **Cohort-3** repository, part of the 100xDevs initiative led by Harkirat Singh. This course covers **MERN Stack** development along with introductory **DevOps** practices, designed to equip learners with full-stack development skills.
 
