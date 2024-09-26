@@ -1,0 +1,19 @@
+version: '1.0'
+services:
+  mongodb:
+      image: "mongo"
+      container_name: ansh_mongo
+      ports:
+        - "27017:27017"
+      volumes:
+        - "mongo_data:/data/db"
+  backend:
+    build: .
+    container_name: backend_test
+    ports:
+      - 3000:3000
+    environment:
+       MONGO_URL: "mongodb://ansh_mongo:27017"
+
+volumes:
+  mongo_data:
