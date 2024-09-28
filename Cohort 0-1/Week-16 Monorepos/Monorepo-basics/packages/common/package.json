@@ -6,6 +6,9 @@
   "exports":{
     "./config":"./src/index.ts"
   },
+  "dependencies": {
+    "@repo/common":"*"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
