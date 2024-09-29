@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { BACKEND_URL } from "../config";
-
+interface UserData{
+    userId:number
+}
 export const User = () => {
-    const [userData, setUserData] = useState();
+    const [userData, setUserData] = useState<UserData>();
 
     useEffect(() => {
         axios.get(`${BACKEND_URL}/user`, {
