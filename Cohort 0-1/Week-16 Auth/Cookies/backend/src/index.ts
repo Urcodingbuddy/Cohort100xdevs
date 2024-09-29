@@ -36,7 +36,8 @@ app.get("/user", (req, res) => {
 
 
 app.post("/logout", (req, res) => {
-    res.cookie("token", "ads");
+    res.clearCookie("token")
+    
     res.json({
         message: "Logged out!"
     })
@@ -47,4 +48,6 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../src/index.html"))
 })
 
-app.listen(3000);
+app.listen(3000,"0.0.0.0",()=>{
+    console.log("Live on Port: 3000")
+});
