@@ -23,6 +23,19 @@ app.get('/users', (req, res) => {
     }
 });
 
+
+app.post('/users', (req, res) => {
+    const { name } = req.query;
+    if (name) {
+        // @ts-ignore
+        const filteredUsers = users.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
+        res.json(filteredUsers);
+    } else {
+        res.json(users);
+    }
+});
+
+
 app.use('/documentation', swaggerUi.serve, swaggerUi.setup(openapispec))
 
 app.listen(port, () => {
