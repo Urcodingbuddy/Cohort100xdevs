@@ -10,6 +10,7 @@ app.use(express.json());
 const otpLimiter = rateLimit({
 	windowMs: 5 * 60 * 1000, // 15 minutes
 	limit: 3 , // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+  message:"Too many OTP request at the same time, please try again after 5 minutes",
 	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
 	// store: ... , // Redis, Memcached, etc. See below.
@@ -18,6 +19,7 @@ const otpLimiter = rateLimit({
 const passLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
 	limit: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+  message:"Too many password reset attempts,please try again after 15 minutes",
 	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
 	// store: ... , // Redis, Memcached, etc. See below.
@@ -42,7 +44,7 @@ app.post('/generate-otp', otpLimiter, (req, res) => {
   
   // Endpoint to reset password
 // @ts-ignore
-  app.post('/reset-password', otpLimiter, (req, res) => {
+  app.post('/reset-password', passLimiter, (req, res) => {
     const { email, otp, newPassword } = req.body;
     if (!email || !otp || !newPassword) {
       return res.status(400).json({ message: "Email, OTP, and new password are required" });
