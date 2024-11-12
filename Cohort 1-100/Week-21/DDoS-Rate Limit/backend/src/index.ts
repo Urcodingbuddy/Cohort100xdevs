@@ -1,10 +1,15 @@
 
 import { rateLimit } from 'express-rate-limit'
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 const PORT = 3000;
-
+app.use(cors({
+  origin: 'http://localhost:5173', // Allow requests from this origin only (frontend URL)
+  methods: ['GET', 'POST'],        // Specify allowed HTTP methods
+  credentials: true                // Include cookies in requests if needed
+}));
 app.use(express.json());
 
 const otpLimiter = rateLimit({
